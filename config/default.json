@@ -1,0 +1,12 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "mongodb": "mongodb://localhost:27017/ptpolling",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "3ZBASDUCNFQwJ7LymOLS8sPFo1KM/H7bfNhUAkJa52vBjt1Sh0TIV1z7JlgyDksh4lJZd0+JX5w33korfOzWhg=="
+    },
+    "local": {}
+  }
+}
