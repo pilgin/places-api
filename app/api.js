@@ -4,25 +4,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-var _serveFavicon = require('serve-favicon');
-
-var _serveFavicon2 = _interopRequireDefault(_serveFavicon);
-
-var _compression = require('compression');
-
-var _compression2 = _interopRequireDefault(_compression);
-
 var _feathers = require('feathers');
 
 var _feathers2 = _interopRequireDefault(_feathers);
-
-var _feathersConfiguration = require('feathers-configuration');
-
-var _feathersConfiguration2 = _interopRequireDefault(_feathersConfiguration);
 
 var _feathersHooks = require('feathers-hooks');
 
@@ -51,11 +35,8 @@ var _services2 = _interopRequireDefault(_services);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _feathers2.default)();
-var serveStatic = _feathers2.default.static;
 
-app.configure((0, _feathersConfiguration2.default)(_path2.default.join(__dirname, '..')));
-
-app.use((0, _compression2.default)()).use((0, _serveFavicon2.default)(_path2.default.join(app.get('public'), 'favicon.ico'))).use('/', serveStatic(app.get('public'))).use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({
+app.use(_bodyParser2.default.json()).use(_bodyParser2.default.urlencoded({
     extended: true
 })).configure((0, _feathersHooks2.default)()).configure((0, _feathersRest2.default)()).configure((0, _feathersPrimus2.default)({
     transformer: 'websockets'

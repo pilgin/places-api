@@ -29,6 +29,6 @@ const placeSchema = new Schema({
     }
 });
 
-const placeModel = mongoose.model('Place', placeSchema)
+const placeModel = mongoose.model('Place', placeSchema);
 
 export default placeModel;

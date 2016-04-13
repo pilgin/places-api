@@ -1,18 +1,22 @@
 import mongoose from 'mongoose';
-import app from './app';
+import app from './index';
 import feathersMongoose from 'feathers-mongoose';
 
-const mongoPath = app.get('mongodb');
+var db;
 
-mongoose.Promise = global.Promise;
+export default function initDb() {
+    const mongoPath = app.get('mongodb');
 
-mongoose.connect(mongoPath);
+    mongoose.Promise = global.Promise;
 
-var db = mongoose.connection;
+    mongoose.connect(mongoPath);
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-});
+    db = mongoose.connection;
 
-export default mongoose;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+      // we're connected!
+    });
+};
+
+export {db};

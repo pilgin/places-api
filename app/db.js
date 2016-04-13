@@ -1,16 +1,18 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+exports.db = undefined;
+exports.default = initDb;
 
 var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _app = require('./app');
+var _index = require('./index');
 
-var _app2 = _interopRequireDefault(_app);
+var _index2 = _interopRequireDefault(_index);
 
 var _feathersMongoose = require('feathers-mongoose');
 
@@ -18,17 +20,21 @@ var _feathersMongoose2 = _interopRequireDefault(_feathersMongoose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mongoPath = _app2.default.get('mongodb');
+var db;
 
-_mongoose2.default.Promise = global.Promise;
+function initDb() {
+    var mongoPath = _index2.default.get('mongodb');
 
-_mongoose2.default.connect(mongoPath);
+    _mongoose2.default.Promise = global.Promise;
 
-var db = _mongoose2.default.connection;
+    _mongoose2.default.connect(mongoPath);
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  // we're connected!
-});
+    exports.db = db = _mongoose2.default.connection;
 
-exports.default = _mongoose2.default;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function () {
+        // we're connected!
+    });
+};
+
+exports.db = db;
