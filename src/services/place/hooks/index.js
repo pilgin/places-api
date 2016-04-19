@@ -1,8 +1,14 @@
-import globalHooks from '../../../hooks';
 import hooks from 'feathers-hooks';
+import authentication from 'feathers-authentication';
+
+const auth = authentication.hooks;
 
 export let before = {
-    all: [],
+    all: [
+        auth.verifyToken(),
+        auth.populateUser(),
+        auth.restrictToAuthenticated()
+    ],
     find: [],
     get: [],
     create: [],

@@ -10,9 +10,9 @@ const serveStatic = feathers.static;
 
 const app = feathers();
 
-app.configure(configuration(path.join(__dirname, '..')));
-
 export default app;
+
+app.configure(configuration(path.join(__dirname, '..')));
 
 app.use(compress())
     .use('/api', api)

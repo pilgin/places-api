@@ -21,7 +21,7 @@ const placeSchema = new Schema({
     },
     createdBy: {
         type: Schema.Types.ObjectId,
-        ref: 'Users'
+        ref: 'User'
     },
     updatedAt: {
         type: Date,

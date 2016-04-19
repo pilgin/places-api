@@ -16,6 +16,7 @@ export default function userService() {
     };
 
     app.use(path, service(options));
+
     const userService = app.service(path);
 
     userService.before(hooks.before);

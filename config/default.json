@@ -2,7 +2,14 @@
   "host": "localhost",
   "port": 3030,
   "mongodb": "mongodb://localhost:27017/ptpolling",
-  "public": "../public/",
+  "public": "public/",
+  "uploads": {
+    "images": "public/images/",
+    "fileName": "${file.fieldname}_${Date.now()}_${file.originalname.replace(/[|&;$%@\"<>()+,]/g, '').toLowerCase()}",
+    "limits": {
+      "fileSize": 5242880
+    }
+  },
   "auth": {
     "token": {
       "secret": "3ZBASDUCNFQwJ7LymOLS8sPFo1KM/H7bfNhUAkJa52vBjt1Sh0TIV1z7JlgyDksh4lJZd0+JX5w33korfOzWhg=="
