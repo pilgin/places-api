@@ -5,7 +5,6 @@
   "public": "public/",
   "uploads": {
     "images": "public/images/",
-    "fileName": "${file.fieldname}_${Date.now()}_${file.originalname.replace(/[|&;$%@\"<>()+,]/g, '').toLowerCase()}",
     "limits": {
       "fileSize": 5242880
     }

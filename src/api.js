@@ -7,16 +7,15 @@ import bodyParser from 'body-parser';
 import primus from 'feathers-primus';
 import middleware from './middleware';
 import services from './services';
-import appHooks from './hooks';
 
 const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '..')));
 
-app.use(bodyParser.json({limit: '50mb'}))
+app.use(bodyParser.json({limit: '5mb'}))
     .use(bodyParser.urlencoded({
         extended: true,
-        limit: '50mb'
+        limit: '5mb'
     }))
     .configure(hooks())
     .configure(rest())
@@ -24,7 +23,6 @@ app.use(bodyParser.json({limit: '50mb'}))
         transformer: 'websockets'
     }))
     .configure(services)
-    .configure(middleware)
-    .configure(appHooks);
+    .configure(middleware);
 
 export default app;

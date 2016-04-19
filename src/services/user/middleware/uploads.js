@@ -1,25 +1,20 @@
 import multer from 'multer';
 
 export function setup(app) {
-    const uploadsOptions = apiApp.get('uploads');
+    const uploadsOptions = app.get('uploads');
 
-    var {images, fileName} = uploadsOptions;
+    var {images, limits} = uploadsOptions;
 
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
             cb(null, images);
         },
         filename: function (req, file, cb) {
-            cb(null, fileName);
+            cb(null, `${file.fieldname}_${Date.now()}_${file.originalname.replace(/[|&;$%@\"<>()+,]/g, '').toLowerCase()}`);
         }
     });
 
-    return multer({
-        storage: storage,
-        limits: {
-            fileSize: 5e6
-        }
-    });
+    return multer({storage, limits});
 };
 
 export default function(app) {
@@ -29,6 +24,6 @@ export default function(app) {
 
     var tunedMulter = setup(app);
     
-    return tunedMulter.any();
+    return tunedMulter;
 }
 

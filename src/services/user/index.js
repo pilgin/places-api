@@ -2,6 +2,8 @@ import service from 'feathers-mongoose';
 import model from './models/user';
 import * as hooks from './hooks';
 
+import uploads from './middleware/uploads';
+
 const path = '/user';
 
 export default function userService() {
@@ -15,7 +17,10 @@ export default function userService() {
         }
     };
 
-    app.use(path, service(options));
+    app.use(path, uploads(app).single('avatar'), function (req, res, next) {
+        console.log(arguments); 
+        next();
+    }, service(options));
 
     const userService = app.service(path);
 
