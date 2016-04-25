@@ -2,6 +2,8 @@ import service from 'feathers-mongoose';
 import model from './models/place';
 import * as hooks from './hooks';
 
+import uploads from './middleware/uploads';
+
 const path = '/place';
 
 export default function placeService() {
@@ -15,7 +17,17 @@ export default function placeService() {
         }
     };
 
-    app.use(path, service(options));
+    // #TODO:0 change field name for db write
+    app.use(path, uploads(app).array('photos'), function (req, res, next) {
+        console.log(arguments);
+
+        if (req.files && req.files.length) {
+            req.body.photos = req.files;
+        }
+        
+        next();
+    }, service(options));
+
     const placeService = app.service(path);
 
     placeService.before(hooks.before);

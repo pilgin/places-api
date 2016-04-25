@@ -16,10 +16,7 @@ const userSchema = new Schema({
     name: {
         type: String
     },
-    avatar: {
-        type: String
-    }
-
+    avatar: Schema.Types.Mixed
 });
 
 const userModel = mongoose.model('User', userSchema);

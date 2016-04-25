@@ -11,9 +11,15 @@ export let before = {
     ],
     find: [],
     get: [],
-    create: [],
-    update: [],
-    patch: [],
+    create: [
+        auth.associateCurrentUser({ idField: '_id', as: 'createdBy' })
+    ],
+    update: [
+        auth.associateCurrentUser({ idField: '_id', as: 'updatedBy' })
+    ],
+    patch: [
+        auth.associateCurrentUser({ idField: '_id', as: 'updatedBy' })
+    ],
     remove: []
 };
 

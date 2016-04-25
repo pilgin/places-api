@@ -15,6 +15,8 @@
 
     "safeContextKeyword": "app",
 
+    "disallowSpacesInAnonymousFunctionExpression": false,
+    "disallowSpacesInFunctionExpression": false,
     "requireSpacesInAnonymousFunctionExpression": {
         "beforeOpeningRoundBrace": true,
         "beforeOpeningCurlyBrace": true

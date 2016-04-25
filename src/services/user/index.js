@@ -18,7 +18,12 @@ export default function userService() {
     };
 
     app.use(path, uploads(app).single('avatar'), function (req, res, next) {
-        console.log(arguments); 
+        console.log(arguments);
+
+        if (req.file) {
+            req.body.avatar = req.file;
+        };
+
         next();
     }, service(options));
 

@@ -10,24 +10,16 @@ const placeSchema = new Schema({
     description: {
         type: String
     },
-    photos: [{
-        name: String,
-        comment: String,
-        path: String
-    }],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
+    photos: [Schema.Types.Mixed],
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    updatedAt: {
-        type: Date,
-        default: Date.now
+    updatedBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
-});
+}, { timestamps: true });
 
 const placeModel = mongoose.model('Place', placeSchema);
 
